@@ -1,0 +1,71 @@
+{
+  "name": "vscode-controller-bugs",
+  "displayName": "vscode-controller-bugs",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.66.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onNotebook:gqlnb",
+    "onCommand:gqlnb.createNew"
+  ],
+  "enabledApiProposals": [
+    "notebookControllerKind"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "gqlnb.createNew",
+        "title": "Create New GraphQL Notebook",
+        "shortTitle": "GraphQL Notebook",
+        "category": "GraphQL"
+      }
+    ],
+    "menus": {
+      "file/newFile": [
+        {
+          "command": "gqlnb.createNew",
+          "group": "notebook"
+        }
+      ]
+    },
+    "notebooks": [
+      {
+        "type": "gqlnb",
+        "displayName": "GraphQL Notebook",
+        "priority": "default",
+        "selector": [
+          {
+            "filenamePattern": "*.gqlnb"
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.66.0",
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "14.x",
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
+    "eslint": "^8.6.0",
+    "glob": "^7.2.0",
+    "mocha": "^9.1.3",
+    "typescript": "^4.5.4",
+    "@vscode/test-electron": "^2.0.3"
+  }
+}
